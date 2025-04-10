@@ -5,11 +5,10 @@ from email.mime.multipart import MIMEMultipart
 import email.utils
 import os
 
-# 🔧 CREA l'app Flask PRIMA di usarla!
+# 🔧 Crea l'app Flask
 app = Flask(__name__)
 
 @app.route("/send-email", methods=["POST"])
-
 def api_send_email():
     data = request.get_json()
 
@@ -63,3 +62,8 @@ def api_send_email():
 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+# 🔁 Avvio per Render (porta dinamica)
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
