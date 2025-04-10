@@ -1,4 +1,15 @@
+from flask import Flask, request, jsonify
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+import email.utils
+import os
+
+# 🔧 CREA l'app Flask PRIMA di usarla!
+app = Flask(__name__)
+
 @app.route("/send-email", methods=["POST"])
+
 def api_send_email():
     data = request.get_json()
 
